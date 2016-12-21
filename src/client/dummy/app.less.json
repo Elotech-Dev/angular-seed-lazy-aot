@@ -1,0 +1,9 @@
+{
+  "files": [
+    "../web/less/login.less",
+    "../web/less/cms.less"
+  ],
+  "vars": {
+    "primary": "#003F47"
+  }
+}
