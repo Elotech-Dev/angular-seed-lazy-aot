@@ -7,7 +7,7 @@ import { systemjsConfigStart, TRACEUR_RUNTIME_SRC, systemjsImportStart } from '.
 
 const BUNDLER_OPTIONS = {
   format: 'cjs',
-  minify: true,
+  minify: !Config.DEBUG,
   mangle: false,
   encodeNames : false
 };

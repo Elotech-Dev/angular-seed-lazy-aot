@@ -10,7 +10,7 @@ import Config from '../../config';
 
 const BUNDLER_OPTIONS = {
   format: 'umd',
-  minify: true,
+  minify: !Config.DEBUG,
   mangle: false
 };
 
