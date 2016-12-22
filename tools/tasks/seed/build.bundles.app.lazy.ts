@@ -9,9 +9,10 @@ import { existsSync } from 'fs';
 import Config from '../../config';
 
 const BUNDLER_OPTIONS = {
-  format: 'umd',
+  format: 'cjs',
   minify: !Config.DEBUG,
-  mangle: false
+  mangle: false,
+  encodeNames : !Config.DEBUG
 };
 
 const plugins = <any>gulpLoadPlugins();
