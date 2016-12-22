@@ -91,6 +91,13 @@
   "test": [
     "build.test",
     "karma.run"
+  ],
+
+  "e2e.ci": [
+    "build.prod",
+    "build.js.e2e",
+    "e2e"
   ]
+
 }
 

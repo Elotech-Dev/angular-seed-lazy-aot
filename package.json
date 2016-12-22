@@ -32,7 +32,7 @@
     "start.deving": "gulp start.deving --color",
     "tasks.list": "gulp --tasks-simple --color",
     "test": "gulp test --color",
-    "e2e.ci": "gulp build.prod --color && gulp build.js.e2e --color && gulp e2e --color",
+    "e2e.ci": "gulp e2e.ci --color --env-config prod --build-type prod",
     "e2e.ci.exp": "gulp build.prod.exp --color && gulp build.js.e2e --color && gulp e2e --color",
     "tests.all": "npm test && npm run e2e.ci && npm run e2e.ci.exp",
     "webdriver-start": "webdriver-manager start",

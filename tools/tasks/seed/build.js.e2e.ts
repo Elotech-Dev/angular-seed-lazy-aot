@@ -15,8 +15,9 @@ export = () => {
   let tsProject = makeTsProject({ 'target': 'es2015' }, Config.E2E_SRC);
   let src = [
     Config.TOOLS_DIR + '/manual_typings/**/*.d.ts',
-    join(Config.E2E_SRC, '**/*.ts')
+    join(Config.E2E_SRC, `${Config.BOOTSTRAP_DIR}/**/*.e2e-spec.ts`)
   ];
+
   let result = gulp.src(src)
     .pipe(plugins.plumber())
     .pipe(plugins.sourcemaps.init())
@@ -25,5 +26,5 @@ export = () => {
   return result.js
     .pipe(plugins.sourcemaps.write())
     .pipe(plugins.template(new TemplateLocalsBuilder().withStringifiedSystemConfigDev().build()))
-    .pipe(gulp.dest(Config.E2E_DEST));
+    .pipe(gulp.dest(`${Config.E2E_DEST}/${Config.BOOTSTRAP_DIR}`));
 };
