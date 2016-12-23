@@ -12,19 +12,19 @@
                 "favicon.ico"
             ],
             "index": "index.html",
-            "main": "app/main.ts",
+            "main": "dummy/main.ts",
             "test": "test.ts",
             "tsconfig": "tsconfig.json",
-            "prefix": "app",
+            "prefix": "dummy",
             "mobile": false,
             "styles": [
                 "styles.css"
             ],
             "scripts": [],
             "environments": {
-                "source": "app/environments/environment.ts",
-                "dev": "app/environments/environment.ts",
-                "prod": "app/environments/environment.prod.ts"
+                "source": "dummy/environments/environment.ts",
+                "dev": "dummy/environments/environment.ts",
+                "prod": "dummy/environments/environment.prod.ts"
             }
         }
     ],

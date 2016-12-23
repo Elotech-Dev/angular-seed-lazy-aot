@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { environment } from './environments/environment';
+import { Dummy } from '../shared/model/dummy.type';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +10,5 @@ import { environment } from './environments/environment';
 export class AppComponent {
   title = 'app works!';
   environmentName = environment.production;
+  dummy = new Dummy();
 }
