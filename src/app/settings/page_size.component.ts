@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {Repository} from '../repository'
+import { Component } from '@angular/core';
+import { Repository } from '../repository';
 
 @Component({
   selector: 'app-page-settings',
@@ -14,5 +14,5 @@ import {Repository} from '../repository'
   `
 })
 export class PageSizeComponent {
-  constructor(public repository: Repository) {}
+  constructor(public repository: Repository) { }
 }
