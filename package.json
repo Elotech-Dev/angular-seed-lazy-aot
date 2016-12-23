@@ -1,12 +1,15 @@
 {
-  "name": "play-cli",
-  "version": "0.0.0",
+  "name": "elotech_angular_seed",
+  "version": "1.0.0",
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
     "ng": "ng",
     "start": "gulp ng.command --command serve",
-    "cmd": "gulp ng.command"
+    "cmd": "gulp ng.command",
+    "test": "ng test --watch=false --code-coverage",
+    "test.watch": "ng test",
+    "e2e": "gulp ng.command --command e2e"
   },
   "private": true,
   "dependencies": {
