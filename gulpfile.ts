@@ -6,6 +6,7 @@ import { argv } from 'yargs';
 
 import { createAngularCliSettingsFor } from './angular-cli-base-creator';
 
+
 const BOOTSTRAP_DIR = argv['app'] || 'app';
 const COMMAND = `ng ${argv['command'] || 'serve'}`;
 
@@ -26,6 +27,5 @@ gulp.task('ng.execute.log', (done: any) => {
 
 
 gulp.task('ng.command', (done: any) => {
-  runSequence('ng.prepare.settings', 'ng.execute.log',  'ng.execute.command', done);
-  done();
+  runSequence('ng.prepare.settings', 'ng.execute.log', 'ng.execute.command',  done);
 });

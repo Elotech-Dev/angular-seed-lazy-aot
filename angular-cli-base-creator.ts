@@ -10,7 +10,7 @@ export const createAngularCliSettingsFor = (bootstrap_dir: string) => {
     'apps': [
       {
         'root': 'src',
-        'outDir': 'dist',
+        'outDir': `dist/${bootstrap_dir}`,
         'assets': [
           'assets',
           'favicon.ico'
