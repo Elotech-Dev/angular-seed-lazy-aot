@@ -16,13 +16,12 @@ gulp.task('ng.prepare.settings', (done: any) => {
   done();
 });
 
-gulp.task('ng.execute.command', shell.task([
-   COMMAND
-]));
+gulp.task('ng.execute.command', shell.task(COMMAND));
 
 
 gulp.task('ng.execute.log', (done: any) => {
   util.log(`Try to execute "${COMMAND}"`);
+  done();
 });
 
 
