@@ -1,28 +1,32 @@
 import * as gulp from 'gulp';
 import * as util from 'gulp-util';
+import * as shell from 'gulp-shell'
 import * as runSequence from 'run-sequence';
+import { argv } from 'yargs';
 
-import Config from './tools/config';
-import { loadTasks, loadCompositeTasks } from './tools/utils';
+import { createAngularCliSettingsFor } from './angular-cli-base-creator';
 
-
-loadTasks(Config.SEED_TASKS_DIR);
-loadTasks(Config.PROJECT_TASKS_DIR);
-
-loadCompositeTasks(Config.SEED_COMPOSITE_TASKS, Config.PROJECT_COMPOSITE_TASKS);
+const BOOTSTRAP_DIR = argv['app'] || 'app';
+const COMMAND = `ng ${argv['command'] || 'serve'}`;
 
 
-// --------------
-// Clean dev/coverage that will only run once
-// this prevents karma watchers from being broken when directories are deleted
-let firstRun = true;
-gulp.task('clean.once', (done: any) => {
-  if (firstRun) {
-    firstRun = false;
-    runSequence('check.tools', 'clean.dev', 'clean.coverage', done);
-  } else {
-    util.log('Skipping clean on rebuild');
-    done();
-  }
+gulp.task('ng.prepare.settings', (done: any) => {
+  util.log(`Prepared settings for ${BOOTSTRAP_DIR} `);
+  createAngularCliSettingsFor(BOOTSTRAP_DIR);
+  done();
 });
 
+gulp.task('ng.execute.command', shell.task([
+   COMMAND
+]));
+
+
+gulp.task('ng.execute.log', (done: any) => {
+  util.log(`Try to execute "${COMMAND}"`);
+});
+
+
+gulp.task('ng.command', (done: any) => {
+  runSequence('ng.prepare.settings', 'ng.execute.log',  'ng.execute.command', done);
+  done();
+});
