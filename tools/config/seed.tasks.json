@@ -1,0 +1,8 @@
+{
+  "ng.execute": [
+    "ng.prepare.settings",
+    "ng.execute.log",
+    "ng.execute.shell"
+  ]
+}
+

@@ -1,31 +1,9 @@
-import * as gulp from 'gulp';
-import * as util from 'gulp-util';
-import * as shell from 'gulp-shell'
-import * as runSequence from 'run-sequence';
-import { argv } from 'yargs';
-
-import { createAngularCliSettingsFor } from './angular-cli-base-creator';
+import Config from './tools/config';
+import { loadTasks, loadCompositeTasks  } from './tools/utils';
 
 
-const BOOTSTRAP_DIR = argv['app'] || 'app';
-const EXEC = `ng ${argv['exec'] || 'serve'}`;
+loadTasks(Config.SEED_TASKS_DIR);
+loadTasks(Config.PROJECT_TASKS_DIR);
 
+loadCompositeTasks(Config.SEED_COMPOSITE_TASKS, Config.PROJECT_COMPOSITE_TASKS);
 
-gulp.task('ng.prepare.settings', (done: any) => {
-  util.log(`Prepared settings for ${BOOTSTRAP_DIR} `);
-  createAngularCliSettingsFor(BOOTSTRAP_DIR);
-  done();
-});
-
-gulp.task('ng.execute.shell', shell.task(EXEC));
-
-
-gulp.task('ng.execute.log', (done: any) => {
-  util.log(`Try to execute "${EXEC}"`);
-  done();
-});
-
-
-gulp.task('ng.execute', (done: any) => {
-  runSequence('ng.prepare.settings', 'ng.execute.log', 'ng.execute.shell',  done);
-});
