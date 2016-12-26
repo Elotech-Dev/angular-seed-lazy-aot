@@ -5,7 +5,7 @@ export const createAngularCliSettingsFor = (bootstrap_dir: string) => {
   const jsonSettings = {
     'project': {
       'version': '1.0.0-beta.24',
-      'name': 'play-cli'
+      'name': 'elotech-angular-cli'
     },
     'apps': [
       {

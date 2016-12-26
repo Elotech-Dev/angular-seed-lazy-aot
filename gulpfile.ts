@@ -8,7 +8,7 @@ import { createAngularCliSettingsFor } from './angular-cli-base-creator';
 
 
 const BOOTSTRAP_DIR = argv['app'] || 'app';
-const COMMAND = `ng ${argv['command'] || 'serve'}`;
+const EXEC = `ng ${argv['exec'] || 'serve'}`;
 
 
 gulp.task('ng.prepare.settings', (done: any) => {
@@ -17,15 +17,15 @@ gulp.task('ng.prepare.settings', (done: any) => {
   done();
 });
 
-gulp.task('ng.execute.command', shell.task(COMMAND));
+gulp.task('ng.execute.shell', shell.task(EXEC));
 
 
 gulp.task('ng.execute.log', (done: any) => {
-  util.log(`Try to execute "${COMMAND}"`);
+  util.log(`Try to execute "${EXEC}"`);
   done();
 });
 
 
-gulp.task('ng.command', (done: any) => {
-  runSequence('ng.prepare.settings', 'ng.execute.log', 'ng.execute.command',  done);
+gulp.task('ng.execute', (done: any) => {
+  runSequence('ng.prepare.settings', 'ng.execute.log', 'ng.execute.shell',  done);
 });
