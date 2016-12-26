@@ -2,13 +2,11 @@ import { existsSync, lstatSync, readFileSync, readdirSync } from 'fs';
 import * as runSequence from 'run-sequence';
 import * as gulp from 'gulp';
 import * as util from 'gulp-util';
+import * as isstream from 'isstream';
 import { join } from 'path';
+import * as tildify from 'tildify';
 
-
-const tildify = require('tildify');
-const isstream  = require('isstream');
-
-
+import { changeFileManager } from './code_change_tools';
 import { Task } from '../../tasks/task';
 
 /**
@@ -23,12 +21,12 @@ export function loadTasks(path: string): void {
 function validateTasks(tasks: any) {
   return Object.keys(tasks)
     .map((taskName: string) => {
-      if (!tasks[taskName] ||
+       if (!tasks[taskName] ||
         !Array.isArray(tasks[taskName]) ||
         tasks[taskName].some((t: any) => typeof t !== 'string')) {
-        return taskName;
-      }
-      return null;
+         return taskName;
+       }
+       return null;
     }).filter((taskName: string) => !!taskName);
 }
 
@@ -126,7 +124,7 @@ function normalizeTask(task: any, taskName: string) {
       }
     };
   }
-  throw new Error(taskName + ' should be instance of theimport * as class ' +
+  throw new Error(taskName + ' should be instance of the class ' +
     'Task, a function or a class which extends Task.');
 }
 
@@ -142,14 +140,17 @@ function registerTask(taskname: string, path: string): void {
   gulp.task(taskname, (done: any) => {
     const task = normalizeTask(require(TASK), TASK);
 
-    const result = task.run(done);
-    if (result && typeof result.catch === 'function') {
-      result.catch((e: any) => {
-        util.log(`Error while running "${TASK}"`, e);
-      });
+    if (changeFileManager.pristine || task.shallRun(changeFileManager.lastChangedFiles)) {
+      const result = task.run(done);
+      if (result && typeof result.catch === 'function') {
+        result.catch((e: any) => {
+          util.log(`Error while running "${TASK}"`, e);
+        });
+      }
+      return result;
+    } else {
+      done();
     }
-    return result;
-
   });
 }
 

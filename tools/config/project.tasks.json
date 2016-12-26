@@ -1,8 +1,5 @@
 {
-  "test": [
-    "tslint",
-    "build.test",
-    "karma.run"
+  "sample": [
+    "sample.task"
   ]
 }
-
