@@ -3,11 +3,13 @@
 
 /*global jasmine */
 var SpecReporter = require('jasmine-spec-reporter');
+var argv = require('yargs').argv;
+var app = argv['app'] || 'app';
 
 exports.config = {
   allScriptsTimeout: 11000,
   specs: [
-    './e2e/**/*.e2e-spec.ts'
+    './e2e/' + app + '/**/*.e2e-spec.ts'
   ],
   capabilities: {
     'browserName': 'chrome'
