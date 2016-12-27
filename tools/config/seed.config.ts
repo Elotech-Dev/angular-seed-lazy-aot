@@ -38,6 +38,8 @@ export class SeedConfig {
 
   SCRIPTS: string[] = [];
 
+  ASSETS: string[] = ['assets', 'favicon.ico'];
+
   /**
    * Seed tasks which are composition of other tasks.
    */
@@ -55,10 +57,7 @@ export class SeedConfig {
         {
           'root': 'src',
           'outDir': `dist/${this.BOOTSTRAP_DIR}`,
-          'assets': [
-            'assets',
-            'favicon.ico'
-          ],
+          'assets': this.ASSETS,
           'index': 'index.html',
           'main': `${this.BOOTSTRAP_DIR}/main.ts`,
           'test': 'test.ts',

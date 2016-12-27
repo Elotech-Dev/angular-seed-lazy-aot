@@ -9,7 +9,10 @@ module.exports = function (config) {
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
       require('karma-remap-istanbul'),
-      require('angular-cli/plugins/karma')
+      require('angular-cli/plugins/karma'),
+      require('karma-mocha-reporter'),
+      require('karma-htmlfile-reporter'),
+      require('karma-junit-reporter')
     ],
     files: [
       { pattern: './src/test.ts', watched: false }
@@ -18,7 +21,7 @@ module.exports = function (config) {
       './src/test.ts': ['angular-cli']
     },
     mime: {
-      'text/x-typescript': ['ts','tsx']
+      'text/x-typescript': ['ts', 'tsx']
     },
     remapIstanbulReporter: {
       reports: {
@@ -31,13 +34,30 @@ module.exports = function (config) {
       environment: 'dev'
     },
     reporters: config.angularCli && config.angularCli.codeCoverage
-              ? ['progress', 'karma-remap-istanbul']
-              : ['progress'],
+      ? ['mocha', 'junit', 'html', 'karma-remap-istanbul']
+      : ['mocha'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
-    singleRun: false
+    singleRun: false,
+    junitReporter: {
+      outputDir:  'dist/tmp/test-results/out', // results will be saved as $outputDir/$browserName.xml
+      outputFile: undefined, // if included, results will be saved as $outputDir/$browserName/$outputFile
+      suite: '', // suite will become the package name attribute in xml testsuite element
+      useBrowserName: true, // add browser name to report and classes names
+      nameFormatter: undefined, // function (browser, result) to customize the name attribute in xml testcase element
+      classNameFormatter: undefined, // function (browser, result) to customize the classname attribute in xml testcase element
+      properties: {} // key value pair of properties to add to the <properties> section of the report
+    },
+    htmlReporter: {
+      outputFile: 'dist/tmp/test-results/index.html',
+      pageTitle: 'Unit Tests',
+      subPageTitle: 'Angular 2',
+      groupSuites: true,
+      useCompactStyle: true,
+      useLegacyStyle: true
+    }
   });
 };
