@@ -16,6 +16,11 @@ export class ProjectConfig extends SeedConfig {
       //  '../node_modules/bootstrap/dist/css/bootstrap.css'
     ];
 
+
+    this.ASSETS = [ ...this.ASSETS
+      //  '../node_modules/bootstrap/dist/css/bootstrap.css'
+    ];
+
   }
 
 }
