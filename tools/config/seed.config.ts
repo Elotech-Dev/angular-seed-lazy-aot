@@ -38,7 +38,7 @@ export class SeedConfig {
 
   SCRIPTS: string[] = [];
 
-  ASSETS: string[] = ['assets','favicon.ico'];
+  ASSETS: string[] = ['assets', 'favicon.ico'];
 
   /**
    * Seed tasks which are composition of other tasks.

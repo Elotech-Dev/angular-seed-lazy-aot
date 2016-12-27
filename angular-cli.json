@@ -6,23 +6,23 @@
     "apps": [
         {
             "root": "src",
-            "outDir": "dist/dummy",
+            "outDir": "dist/app",
             "assets": [
                 "assets",
                 "favicon.ico"
             ],
             "index": "index.html",
-            "main": "dummy/main.ts",
+            "main": "app/main.ts",
             "test": "test.ts",
             "tsconfig": "tsconfig.json",
-            "prefix": "dummy",
+            "prefix": "app",
             "mobile": false,
             "styles": [],
             "scripts": [],
             "environments": {
-                "source": "dummy/environments/environment.ts",
-                "dev": "dummy/environments/environment.ts",
-                "prod": "dummy/environments/environment.prod.ts"
+                "source": "app/environments/environment.ts",
+                "dev": "app/environments/environment.ts",
+                "prod": "app/environments/environment.prod.ts"
             }
         }
     ],
