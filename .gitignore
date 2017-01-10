@@ -46,6 +46,7 @@ docs
 lib
 test
 tmp
+angular-cli.json
 
 gulpfile.js
 gulpfile.js.map
